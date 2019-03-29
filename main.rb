@@ -46,14 +46,15 @@ module Enumerable
     end
   end
 
-
-  def my_map()
-    new_array = []
-    self.my_each do |item|
-      new_array << yield(item)
+  def my_map(proc = nil)
+    return self if proc.nil? && !block_given?
+    my_inject([]) do |new_array, item|
+      next_value = proc.nil? ? yield(item) : proc.call(item)
+      new_array << next_value
     end
-    new_array
   end
+
+
 
 def my_inject(carry = self[0])
   i = carry == self[0] ? 1 : 0
