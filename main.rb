@@ -55,14 +55,6 @@ module Enumerable
     new_array
   end
 
-#  def my_inject(start = 0)
-#       final = start
-#     self.my_each do |item|
-#      final +=yield(start,item)
-#     end
-#     final
-#   end
-
 def my_inject(carry = self[0])
   i = carry == self[0] ? 1 : 0
   while i < length
@@ -72,14 +64,4 @@ def my_inject(carry = self[0])
   carry
 end
 
-  
-
 end
-
-# a = [12,23,56,43,33]
-
-# my_each([2,2,1,5,8,7]) { |item| puts " item comiing #{item}"}
-
-# my_each_with_index([12,23,56,43,33]) {|item, index| puts "this is index #{index} annd item #{item}"}
-
-# my_select(a) {|item|  item > 30 }
