@@ -29,9 +29,15 @@ module Enumerable
     new_array.length == self.length ? true : false
   end
 
+  def my_any?()
+    new_array = []
+    self.my_select do |item|
+      new_array << item if yield(item)
+    end
+    new_array.length > 0 ? true : false
+  end
+
   
-
-
   
 
 end
