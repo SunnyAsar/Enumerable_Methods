@@ -20,12 +20,6 @@ module Enumerable
     new_array
   end
 
-  
-
-
-
-    
-
 end
 
 # a = [12,23,56,43,33]
