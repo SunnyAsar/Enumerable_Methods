@@ -45,6 +45,18 @@ module Enumerable
     new_array == 0 ? true : false
   end
 
+  def my_count()
+      new_array = []
+    if block_given?
+      self.my_select do |item|
+        new_array << item if yield(item)
+      end
+      new_array.length
+    else
+      self.length
+    end
+  end
+
 
   
 
