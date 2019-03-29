@@ -12,6 +12,16 @@ module Enumerable
     end
   end
 
+  def my_select()
+    new_array =[]
+    self.my_each do |item|
+      new_array << item if yield(item) 
+    end
+    new_array
+  end
+
+  
+
 
 
     
