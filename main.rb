@@ -20,6 +20,20 @@ module Enumerable
     new_array
   end
 
+
+  def my_all?()
+    new_array = []
+    self.my_select do |item|
+      new_array << item if yield(item)  
+    end
+    new_array.length == self.length ? true : false
+  end
+
+  
+
+
+  
+
 end
 
 # a = [12,23,56,43,33]
