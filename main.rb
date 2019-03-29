@@ -5,7 +5,6 @@ module Enumerable
     end
   end
 
-
   def my_each_with_index()
     for i in (0...self.length)
       yield(self[i],i)
@@ -20,29 +19,19 @@ module Enumerable
     new_array
   end
 
-
   def my_all?()
-    new_array = []
-    self.my_select do |item|
-      new_array << item if yield(item)  
-    end
+    new_array = self.my_select { |i| yield(i) }
     new_array.length == self.length ? true : false
   end
 
   def my_any?()
-    new_array = []
-    self.my_select do |item|
-      new_array << item if yield(item)
-    end
-    new_array.length > 0 ? true : false
+    new_array = self.my_select { |i| yield(i) }
+    new_array.length > 0 
   end
 
   def my_none?()
-    new_array = []
-    self.my_select do |item|
-      new_array << item if yield(item)
-    end
-    new_array == 0 ? true : false
+    new_array = self.my_select { |i| yield(i) }
+    new_array == 0 
   end
 
   def my_count()
@@ -66,6 +55,22 @@ module Enumerable
     new_array
   end
 
+#  def my_inject(start = 0)
+#       final = start
+#     self.my_each do |item|
+#      final +=yield(start,item)
+#     end
+#     final
+#   end
+
+def my_inject(carry = self[0])
+  i = carry == self[0] ? 1 : 0
+  while i < length
+    carry = yield(carry, self[i])
+    i += 1
+  end
+  carry
+end
 
   
 
