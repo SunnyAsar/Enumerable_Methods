@@ -19,9 +19,17 @@ module Enumerable
     new_array
   end
 
+  # def my_all?()
+  #   new_array = self.my_select { |i| yield(i) }
+  #   new_array.length == self.length ? true : false
+  # end
+
+
   def my_all?()
-    new_array = self.my_select { |i| yield(i) }
-    new_array.length == self.length ? true : false
+    new_array = self.my_each { |i| yield(i) }
+
+    # new_array.length == self.length ? true : false
+    # return new_array
   end
 
   def my_any?()
@@ -40,9 +48,13 @@ module Enumerable
       self.my_select do |item|
         new_array << item if yield(item)
       end
-      new_array.length
+      new_count = 0
+      new_array.each { new_count += 1}
+      new_count
     else
-      self.length
+      count = 0
+      self.each { count += 1}
+      count
     end
   end
 
