@@ -41,8 +41,13 @@ module Enumerable
   end
 
   def my_none?()
-    new_array = self.my_select { |i| yield(i) }
-    new_array == 0 
+    self.my_each do |i| 
+      res = yield(i) 
+      if res == true
+      return  false
+      end
+    end
+    true
   end
 
   def my_count()
