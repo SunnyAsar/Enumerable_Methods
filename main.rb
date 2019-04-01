@@ -63,10 +63,12 @@ module Enumerable
 
   def my_map(proc = nil)
     return self if proc.nil? && !block_given?
-    my_inject([]) do |new_array, item|
-      next_value = proc.nil? ? yield(item) : proc.call(item)
+    new_array = []
+    for i in self
+      next_value = proc.nil? ? yield(i) : proc.call(i)
       new_array << next_value
     end
+    new_array
   end
 
 
