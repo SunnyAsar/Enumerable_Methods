@@ -19,22 +19,25 @@ module Enumerable
     new_array
   end
 
-  # def my_all?()
-  #   new_array = self.my_select { |i| yield(i) }
-  #   new_array.length == self.length ? true : false
-  # end
-
-
+  
   def my_all?()
-    new_array = self.my_each { |i| yield(i) }
-
-    # new_array.length == self.length ? true : false
-    # return new_array
+    self.each do |i|
+     res = yield(i)
+     if res != true
+        return false
+      end
+    end
+    true
   end
 
   def my_any?()
-    new_array = self.my_select { |i| yield(i) }
-    new_array.length > 0 
+    self.my_each do |i|
+      res = yield(i)
+      if res == true
+        return true
+      end
+    end
+    false
   end
 
   def my_none?()
@@ -45,15 +48,15 @@ module Enumerable
   def my_count()
       new_array = []
     if block_given?
-      self.my_select do |item|
+      self.my_each do |item|
         new_array << item if yield(item)
       end
       new_count = 0
-      new_array.each { new_count += 1}
+      new_array.my_each { new_count += 1}
       new_count
     else
       count = 0
-      self.each { count += 1}
+      self.my_each { count += 1}
       count
     end
   end
